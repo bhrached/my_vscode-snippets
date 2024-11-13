@@ -1,0 +1,35 @@
+{
+    "Vagrantfile Basic Setup": {
+      "prefix": "vagrantfile",
+      "body": [
+        "# Vagrantfile pour une machine virtuelle Ubuntu",
+        "Vagrant.configure('2') do |config|",
+        "  # Définir la box",
+        "  config.vm.box = '${1:ubuntu/bionic64}'  # Choisissez l'image de la box, ici Ubuntu 18.04",
+        "",
+        "  # Configurer le réseau",
+        "  config.vm.network 'private_network', type: 'dhcp'  # Réseau privé avec adresse IP dynamique",
+        "  config.vm.network 'forwarded_port', guest: 80, host: 8080  # Redirige le port 80 de la VM vers le port 8080 sur l'hôte",
+        "",
+        "  # Configuration des ressources",
+        "  config.vm.provider 'virtualbox' do |vb|",
+        "    vb.memory = '1024'  # Allouer 1GB de RAM",
+        "    vb.cpus = 2         # Allouer 2 CPU",
+        "  end",
+        "",
+        "  # Dossier synchronisé",
+        "  config.vm.synced_folder '.', '/vagrant', type: 'virtualbox'  # Synchronisation du dossier local avec /vagrant dans la VM",
+        "",
+        "  # Provisionnement automatique de la VM",
+        "  config.vm.provision 'shell', inline: <<-SHELL",
+        "    sudo apt-get update -y",
+        "    sudo apt-get install -y apache2  # Installe Apache",
+        "    sudo systemctl enable apache2    # Active Apache au démarrage",
+        "    sudo systemctl start apache2     # Démarre Apache",
+        "  SHELL",
+        "end"
+      ],
+      "description": "Snippet pour un Vagrantfile avec une machine Ubuntu de base"
+    }
+  }
+  
