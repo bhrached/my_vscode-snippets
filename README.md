@@ -1,5 +1,3 @@
-  README - Snippets Visual Studio Code body { font-family: Arial, sans-serif; line-height: 1.6; } h1, h2, h3 { color: #333; } pre, code { background: #f4f4f4; padding: 10px; border-radius: 5px; display: block; } pre { overflow: auto; }
-
 Déploiement d'une VM Ansible avec Terraform et Vagrant
 ======================================================
 
